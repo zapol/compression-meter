@@ -313,45 +313,40 @@
 			<Option compilerVar="CC" />
 			<Option virtualFolder="USB/" />
 		</Unit>
-		<Unit filename="../oJoy/Makefile" />
-		<Unit filename="../oJoy/hw_config.c">
+		<Unit filename="Makefile" />
+		<Unit filename="hw_config.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../oJoy/hw_config.h" />
-		<Unit filename="../oJoy/leds.c">
+		<Unit filename="hw_config.h" />
+		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../oJoy/leds.h" />
-		<Unit filename="../oJoy/main.c">
+		<Unit filename="platform_config.h" />
+		<Unit filename="stm32f10x_conf.h" />
+		<Unit filename="stm32f10x_it.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../oJoy/platform_config.h" />
-		<Unit filename="../oJoy/stm32_flash.ld" />
-		<Unit filename="../oJoy/stm32f10x_conf.h" />
-		<Unit filename="../oJoy/stm32f10x_it.c">
+		<Unit filename="stm32f10x_it.h" />
+		<Unit filename="usb_conf.h" />
+		<Unit filename="usb_desc.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../oJoy/stm32f10x_it.h" />
-		<Unit filename="../oJoy/usb_conf.h" />
-		<Unit filename="../oJoy/usb_desc.c">
+		<Unit filename="usb_desc.h" />
+		<Unit filename="usb_endp.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../oJoy/usb_desc.h" />
-		<Unit filename="../oJoy/usb_endp.c">
+		<Unit filename="usb_istr.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../oJoy/usb_istr.c">
+		<Unit filename="usb_istr.h" />
+		<Unit filename="usb_prop.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../oJoy/usb_istr.h" />
-		<Unit filename="../oJoy/usb_prop.c">
+		<Unit filename="usb_prop.h" />
+		<Unit filename="usb_pwr.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../oJoy/usb_prop.h" />
-		<Unit filename="../oJoy/usb_pwr.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="../oJoy/usb_pwr.h" />
+		<Unit filename="usb_pwr.h" />
 		<Extensions>
 			<code_completion />
 			<debugger>

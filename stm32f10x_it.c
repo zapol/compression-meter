@@ -28,6 +28,7 @@
 extern uint8_t USART_Rx_Buffer[];
 extern uint32_t USART_Rx_ptr_in;
 extern uint32_t ADC_ConvertedValue[];
+__IO int sysTicks=0;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 /******************************************************************************/
@@ -147,6 +148,8 @@ void PendSV_Handler(void)
 *******************************************************************************/
 void SysTick_Handler(void)
 {
+    sysTicks++;
+    USART_To_USB_Send_Data();
 }
 
 /******************************************************************************/

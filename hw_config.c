@@ -36,7 +36,7 @@ uint32_t USART_Rx_length  = 0;
 
 uint8_t  USB_Tx_State = 0;
 
-uint32_t ADC_ConvertedValue[4];
+__IO uint32_t ADC_ConvertedValue[4];
 
 static void IntToUnicode (uint32_t value , uint8_t *pbuf , uint8_t len);
 /* Extern variables ----------------------------------------------------------*/
@@ -114,7 +114,7 @@ void Set_System(void)
     }
 
     GPIO_Configuration();
-    //ADC_Configuration();
+    ADC_Configuration();
 }
 
 /*******************************************************************************
@@ -242,32 +242,32 @@ void ADC_Configuration(void)
     ADC_InitTypeDef ADC_InitStructure;
     DMA_InitTypeDef DMA_InitStructure;
 
-    /* Enable DMA1 clock */
-    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
+//    /* Enable DMA1 clock */
+//    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
+//
+//    /* DMA1 channel1 configuration ---------------------------------------------*/
+//    DMA_DeInit(DMA1_Channel1);
+//    DMA_InitStructure.DMA_PeripheralBaseAddr = ADC1_DR_Address;
+//    DMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)&ADC_ConvertedValue;
+//    DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
+//    DMA_InitStructure.DMA_BufferSize = 1;
+//    DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+//    DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+//    DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Word;
+//    DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Word;
+//    DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;
+//    DMA_InitStructure.DMA_Priority = DMA_Priority_High;
+//    DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
+//    DMA_Init(DMA1_Channel1, &DMA_InitStructure);
+//
+//    /* Enable DMA1 channel1 */
+//    DMA_Cmd(DMA1_Channel1, ENABLE);
+//
+//    /* Enable the DMA1 Channel1 Transfer complete interrupt */
+//    DMA_ITConfig(DMA1_Channel1, DMA_IT_TC, ENABLE);
 
     /* Enable ADC1 clock */
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
-
-    /* DMA1 channel1 configuration ---------------------------------------------*/
-    DMA_DeInit(DMA1_Channel1);
-    DMA_InitStructure.DMA_PeripheralBaseAddr = ADC1_DR_Address;
-    DMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)&ADC_ConvertedValue;
-    DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
-    DMA_InitStructure.DMA_BufferSize = 1;
-    DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
-    DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
-    DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Word;
-    DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Word;
-    DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;
-    DMA_InitStructure.DMA_Priority = DMA_Priority_High;
-    DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
-    DMA_Init(DMA1_Channel1, &DMA_InitStructure);
-
-    /* Enable DMA1 channel1 */
-    DMA_Cmd(DMA1_Channel1, ENABLE);
-
-    /* Enable the DMA1 Channel1 Transfer complete interrupt */
-    DMA_ITConfig(DMA1_Channel1, DMA_IT_TC, ENABLE);
 
     /* ADC1 configuration ------------------------------------------------------*/
     ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;
@@ -281,9 +281,9 @@ void ADC_Configuration(void)
     /* ADC1 regular channel configuration */
     ADC_RegularChannelConfig(ADC1, ADC_Channel_0, 1, ADC_SampleTime_55Cycles5);
 
-    /* Enable ADC1 DMA */
-    ADC_DMACmd(ADC1, ENABLE);
-
+//    /* Enable ADC1 DMA */
+//    ADC_DMACmd(ADC1, ENABLE);
+//
     /* Enable ADC1 */
     ADC_Cmd(ADC1, ENABLE);
 
@@ -501,21 +501,11 @@ void Handle_USBAsynchXfer (void)
 * Input          : None.
 * Return         : none.
 *******************************************************************************/
-void USART_To_USB_Send_Data(void)
+void USB_Send_Data(char c)
 {
+    USART_Rx_Buffer[USART_Rx_ptr_in] = c;
+    USART_Rx_ptr_in++;
 
-    // if (linecoding.datatype == 7)
-    // {
-    //   USART_Rx_Buffer[USART_Rx_ptr_in] = USART_ReceiveData(EVAL_COM1) & 0x7F;
-    // }
-    // else if (linecoding.datatype == 8)
-    // {
-    //   USART_Rx_Buffer[USART_Rx_ptr_in] = USART_ReceiveData(EVAL_COM1);
-    // }
-
-    // USART_Rx_ptr_in++;
-
-    USART_Rx_Buffer[USART_Rx_ptr_in] = 'a';
     /* To avoid buffer overflow */
     if(USART_Rx_ptr_in == USART_RX_DATA_SIZE)
     {

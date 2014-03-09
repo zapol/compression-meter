@@ -40,7 +40,7 @@ void USB_Cable_Config (FunctionalState NewState);
 void USART_Config_Default(void);
 bool USART_Config(void);
 void USB_To_USART_Send_Data(uint8_t* data_buffer, uint8_t Nb_bytes);
-void USART_To_USB_Send_Data(void);
+void USB_Send_Data(char);
 void Handle_USBAsynchXfer (void);
 void GPIO_Configuration(void);
 void ADC_Configuration(void);

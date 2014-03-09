@@ -134,7 +134,7 @@ EVALDIR = $(APPLIBDIR)/Utilities/STM32_EVAL
 # use file-extension c for "c-only"-files
 ## Demo-Application:
 SRC = main.c stm32f10x_it.c hw_config.c
-SRC += usb_desc.c usb_endp.c usb_istr.c usb_prop.c usb_pwr.c
+SRC += usb_desc.c usb_endp.c usb_istr.c usb_prop.c usb_pwr.c pprintf.c
 SRC += $(CMSISDEVDIR)/system_stm32f10x.c
 ## compiler-specific sources
 #SRC += startup_stm32f10x_md_mthomas.c

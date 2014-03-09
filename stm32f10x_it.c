@@ -20,6 +20,7 @@
 #include "usb_lib.h"
 #include "usb_istr.h"
 #include "hw_config.h"
+#include "pprintf.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -146,10 +147,11 @@ void PendSV_Handler(void)
 * Output         : None
 * Return         : None
 *******************************************************************************/
+
 void SysTick_Handler(void)
 {
     sysTicks++;
-    USART_To_USB_Send_Data();
+    pprintf(USB_Send_Data, "%d\r\n", ADC_DR_DATA);
 }
 
 /******************************************************************************/
@@ -189,13 +191,16 @@ void DMA1_Channel1_IRQHandler(void)
 //    USB_SIL_Write(EP1_IN, (uint8_t*) &joyReport, sizeof(joyReport));
 //    SetEPTxValid(ENDP1);
 //
-//    DMA_ClearFlag(DMA1_FLAG_TC1);
+    DMA_ClearFlag(DMA1_FLAG_TC1);
+
+/*
     USART_Rx_Buffer[USART_Rx_ptr_in] = ADC_ConvertedValue[0]&0xFF;
     USART_Rx_ptr_in++;
     if(USART_Rx_ptr_in == USART_RX_DATA_SIZE)
     {
         USART_Rx_ptr_in = 0;
     }
+*/
 }
 
 #if defined (USE_STM3210B_EVAL) || defined (USE_STM3210E_EVAL)

@@ -40,7 +40,7 @@ extern __IO int sysTicks;
 int main(void)
 {
   Set_System();
-  SysTick_Config(SystemCoreClock/10);
+  SysTick_Config(SystemCoreClock/10000);
   Set_USBClock();
   USB_Interrupts_Config();
   USB_Init();

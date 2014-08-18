@@ -19,6 +19,8 @@
 #include "usb_desc.h"
 #include "hw_config.h"
 #include "usb_pwr.h"
+#include "platform_config.h"
+#include "lcd_hw.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -39,17 +41,20 @@ extern __IO int sysTicks;
 
 int main(void)
 {
-  Set_System();
-  SysTick_Config(SystemCoreClock/10000);
-  Set_USBClock();
-  USB_Interrupts_Config();
-  USB_Init();
+    Set_System();
+    SysTick_Config(SystemCoreClock/10000);
+    Set_USBClock();
+    USB_Interrupts_Config();
+    USB_Init();
 
-  volatile int x;
-  while (1)
-  {
-    x++;
-  }
+    lcdInit();
+
+    volatile int x;
+    while (1)
+    {
+        lcdSetBklight(sysTicks%10000/100);
+        x++;
+    }
 }
 #ifdef USE_FULL_ASSERT
 /*******************************************************************************
@@ -63,12 +68,12 @@ int main(void)
 *******************************************************************************/
 void assert_failed(uint8_t* file, uint32_t line)
 {
-  /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+    /* User can add his own implementation to report the file name and line number,
+       ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
 
-  /* Infinite loop */
-  while (1)
-  {}
+    /* Infinite loop */
+    while (1)
+    {}
 }
 #endif
 

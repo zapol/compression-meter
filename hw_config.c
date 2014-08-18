@@ -224,10 +224,19 @@ void GPIO_Configuration(void)
     GPIO_Init(USB_DISCONNECT, &GPIO_InitStructure);
     USB_DISCONNECT->BSRR = USB_DISCONNECT_PIN;
 
+    /* USB_DISCONNECT used as USB pull-up */
+    GPIO_InitStructure.GPIO_Pin = USB_DISCONNECT_PIN;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_Init(USB_DISCONNECT, &GPIO_InitStructure);
+    USB_DISCONNECT->BSRR = USB_DISCONNECT_PIN;
+
+
+
     /* Configure Potentiometer IO as analog input */
-    GPIO_InitStructure.GPIO_Pin = GPIO_IOAIN0_PIN;
+    GPIO_InitStructure.GPIO_Pin = GPIO_IOAIN_PIN;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
-    GPIO_Init(GPIO_IOAIN0, &GPIO_InitStructure);
+    GPIO_Init(GPIO_IOAIN, &GPIO_InitStructure);
 }
 
 /*******************************************************************************
@@ -240,7 +249,7 @@ void GPIO_Configuration(void)
 void ADC_Configuration(void)
 {
     ADC_InitTypeDef ADC_InitStructure;
-    DMA_InitTypeDef DMA_InitStructure;
+//    DMA_InitTypeDef DMA_InitStructure;
 
 //    /* Enable DMA1 clock */
 //    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);

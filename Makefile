@@ -79,7 +79,8 @@
 # Toolchain prefix (i.e arm-elf- -> arm-elf-gcc.exe)
 #TCHAIN_PREFIX = arm-eabi-
 #TCHAIN_PREFIX = arm-elf-
-TCHAIN_PREFIX = /opt/arm-2011.03/bin/arm-none-eabi-
+TCHAIN_PREFIX = arm-none-eabi-
+#TCHAIN_PREFIX = /opt/arm-2011.03/bin/arm-none-eabi-
 REMOVE_CMD=rm
 #REMOVE_CMD=cs-rm
 
@@ -134,6 +135,7 @@ EVALDIR = $(APPLIBDIR)/Utilities/STM32_EVAL
 # use file-extension c for "c-only"-files
 ## Demo-Application:
 SRC = main.c stm32f10x_it.c hw_config.c
+SRC += lcd_hw.c
 SRC += usb_desc.c usb_endp.c usb_istr.c usb_prop.c usb_pwr.c pprintf.c
 SRC += $(CMSISDEVDIR)/system_stm32f10x.c
 ## compiler-specific sources
@@ -269,6 +271,7 @@ CFLAGS += -mcpu=$(MCU) -mthumb
 CFLAGS += $(CDEFS)
 CFLAGS += $(INCLUDES)
 CFLAGS += -ffunction-sections -mlittle-endian
+CFLAGS += -mfloat-abi=soft
 
 # Assembler flags.
 ASFLAGS  = -MD

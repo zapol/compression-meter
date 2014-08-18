@@ -90,10 +90,8 @@ void EP1_IN_Callback (void)
 *******************************************************************************/
 void EP3_OUT_Callback(void)
 {
-  uint16_t USB_Rx_Cnt;
-
   /* Get the received data buffer and update the counter */
-  USB_Rx_Cnt = USB_SIL_Read(EP3_OUT, USB_Rx_Buffer);
+  USB_SIL_Read(EP3_OUT, USB_Rx_Buffer);
 
   /* USB data will be immediately processed, this allow next USB traffic beeing
   NAKed till the end of the USART Xfet */

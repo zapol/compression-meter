@@ -25,9 +25,9 @@
 #define USB_DevDisconnect()                 (USB_DISCONNECT->CRH |= 0x01<<6)
 
 #define RCC_APB2Periph_GPIO_IOAIN           RCC_APB2Periph_GPIOA
-#define GPIO_IOAIN0                          GPIOA
-#define GPIO_IOAIN0_PIN                      GPIO_Pin_0   /* PC.04 */
-#define ADC_AIN_CHANNEL                     ADC_Channel_0
+#define GPIO_IOAIN                          GPIOA
+#define GPIO_IOAIN_PIN                      GPIO_Pin_2
+#define ADC_AIN_CHANNEL                     ADC_Channel_2
 
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
